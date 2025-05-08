@@ -17,8 +17,8 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-[#dbc3eb] text-[#171619] px-4 py-3 shadow-md pb-4 pt-4">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <header className="bg-[#dbc3eb] text-[#171619] px-4 py-3 shadow-md pb-4 pt-4 ">
+      <div className="max-w-8xl mx-auto flex justify-between items-center border-gray-500  border-b-1 pb-3">
         {/* Logo */}
         <div className="text-2xl font-bold text-[#933194]">Blogs.</div>
 
@@ -37,10 +37,10 @@ const Header = () => {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex space-x-4">
-          <button className="text-sm px-4 py-1 bg-[#933194] text-white rounded-full hover:border-white border transition-colors duration-200">
+          <button className="text-sm pb-2 pt-2 px-5 py-5 bg-[#933194] text-white rounded-full hover:border-white border transition-colors duration-200">
             Sign in
           </button>
-          <button className="text-sm px-4 py-1 border border-[#933194] text-[#933194] rounded-full hover:border-white transition-colors duration-200">
+          <button className="text-sm  pb-2 pt-2 px-5 py-5 border border-[#933194] text-[#933194] rounded-full hover:border-white transition-colors duration-200">
             Search
           </button>
         </div>
