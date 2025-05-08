@@ -50,13 +50,13 @@ const Hero = () => {
               <br></br>
               <span> beauty</span>
             </p>
-            <p className="ml-12 w-[32%] absolute top-[44%]  z-[100]  left-[-10%] text-[3.75vmin]  leading-[7vmin] md:top-[45%] md:text-[2.15vmin] md:leading-[4vmin] md:left-[-4%] text-start">
+            <p className="ml-11 w-[32%] pr-[8px] absolute top-[44%]  z-[100]  left-[-10%] text-[3.75vmin]  leading-[7vmin] md:top-[45%] md:text-[2.15vmin] md:leading-[4vmin] md:left-[-4%] text-start">
               Your go to source for cosmetics, queries, tuts,and your favourite
               product reviews
             </p>
           </div>
 
-          <div className="imageHolder absolute top-[19%] left-[34%]  w-[61vw] h-[58vh] ">
+          <div className="imageHolder absolute top-[19%] left-[33%]  w-[61vw] h-[58vh] ">
             <img
               src="/cosmetic-hero.png"
               className="max-h-full max-w-full rounded-2xl"
