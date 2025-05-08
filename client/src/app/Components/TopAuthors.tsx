@@ -1,8 +1,9 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import Image from 'next/image';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface Author {
   name: string;
@@ -12,23 +13,24 @@ interface Author {
 
 const authors: Author[] = [
   {
-    name: 'kaushiki kapoor',
+    name: "kaushiki kapoor",
     articles: 3,
-    image: '/images/author1.png',
+    image: "/images/author1.png",
   },
   {
-    name: 'Emily White',
+    name: "Emily White",
     articles: 3,
-    image: '/images/author1.png',
+    image: "/images/author1.png",
   },
   {
-    name: 'kajal Dixit',
+    name: "kajal Dixit",
     articles: 3,
-    image: '/images/author1.png',
+    image: "/images/author1.png",
   },
 ];
 
 const TopAuthors = () => {
+  const router = useRouter();
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -49,7 +51,7 @@ const TopAuthors = () => {
           <motion.div
             key={index}
             whileHover={{ scale: 1.03 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
             className="flex items-center gap-4 p-3 rounded-lg hover:bg-[#e8d3f0] transition-colors"
           >
             <div className="w-12 h-12 relative rounded-full overflow-hidden">
@@ -62,7 +64,9 @@ const TopAuthors = () => {
             </div>
             <div>
               <p className="font-semibold text-[#171619]">{author.name}</p>
-              <p className="text-sm text-[#6c6374]">{author.articles} articles</p>
+              <p className="text-sm text-[#6c6374]">
+                {author.articles} articles
+              </p>
             </div>
           </motion.div>
         ))}
@@ -70,12 +74,15 @@ const TopAuthors = () => {
 
       {/* Subscribe CTA */}
       <motion.div
+        onClick={() => {
+          router.push("/allauthors");
+        }}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 0.4 }}
         className="mt-6 bg-[#b577bd] px-6 py-3 rounded-full text-white text-center font-medium cursor-pointer hover:bg-[#933194] transition-all"
       >
-        Subscribe
+        All Authors
       </motion.div>
     </motion.div>
   );
