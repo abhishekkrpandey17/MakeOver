@@ -1,35 +1,43 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { useInView } from "react-intersection-observer";
 
 const articles = [
   {
-    title: 'Spring 2024 Makeup Trends to Try',
-    author: 'Ana Roberts',
-    date: 'April 13, 2023',
-    tag: 'Trends',
-    published: 'April 16, 2024',
-    image: '/images/cosmetic.png',
+    title: "Spring 2024 Makeup Trends to Try",
+    author: "Ana Roberts",
+    date: "April 13, 2023",
+    tag: "Trends",
+    published: "April 16, 2024",
+    image: "/images/cosmetic.png",
   },
   {
-    title: 'Tips for Long-Lasting Eyeshadow',
-    author: 'Emily White',
-    date: 'April 12',
-    tag: 'How To',
-    published: 'April 12, 2024',
-    image: '/images/cosmetic.png',
-    stats: '3024',
+    title: "Spring 2024 Makeup Trends to Try",
+    author: "Ana Roberts",
+    date: "April 13, 2023",
+    tag: "Trends",
+    published: "April 16, 2024",
+    image: "/images/cosmetic.png",
   },
   {
-    title: 'My Morning Skincare Routine Explained',
-    author: 'Laura Adams',
-    date: 'April 3',
-    tag: 'Reviews',
-    published: 'April 10, 2023',
-    image: '/images/cosmetic.png',
-    stats: '404',
+    title: "Tips for Long-Lasting Eyeshadow",
+    author: "Emily White",
+    date: "April 12",
+    tag: "How To",
+    published: "April 12, 2024",
+    image: "/images/cosmetic.png",
+    stats: "3024",
+  },
+  {
+    title: "My Morning Skincare Routine Explained",
+    author: "Laura Adams",
+    date: "April 3",
+    tag: "Reviews",
+    published: "April 10, 2023",
+    image: "/images/cosmetic.png",
+    stats: "404",
   },
 ];
 
@@ -50,14 +58,15 @@ const LatestArticles = () => {
       <motion.div
         ref={ref}
         initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
+        animate={inView ? "visible" : "hidden"}
         variants={{
           hidden: {},
           visible: {
             transition: { staggerChildren: 0.1 },
           },
         }}
-        className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto"
+
+        className="grid w-[90vw]  sm:grid-cols-2 md:grid-cols-4 gap-5 mx-auto "
       >
         {articles.map((article, index) => (
           <motion.div
@@ -67,8 +76,10 @@ const LatestArticles = () => {
               visible: { opacity: 1, y: 0 },
             }}
             whileHover={{ scale: 1.02 }}
+
             transition={{ type: 'spring', stiffness: 150 }}
             className="bg-[#e6d8ef] rounded-2xl shadow-md px-5 py-5 hover:shadow-lg transition-all"
+
           >
             <div className="w-full h-40 relative rounded-xl overflow-hidden mb-4">
               <Image
