@@ -5,6 +5,7 @@ import "react-modern-drawer/dist/index.css";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Modal from "react-modal";
+import Image from "next/image";
 
 Modal.setAppElement("body");
 
@@ -91,7 +92,7 @@ const Header = () => {
       <Modal
         isOpen={isModalOpen}
         onRequestClose={toggleModal}
-        className="relative bg-white w-[90%] max-w-md mx-auto lg:mt-[10vh] p-6 rounded-xl shadow-xl outline-none"
+        className="relative bg-white w-[90%] max-w-md mx-auto lg:mt-[4vh] p-6 rounded-xl shadow-xl outline-none"
         overlayClassName="fixed inset-0 bg-white/30 backdrop-blur-sm flex justify-center items-center z-1000"
       >
         {/* Close Icon */}
@@ -169,7 +170,7 @@ const Header = () => {
         <div className="my-4 text-center text-sm text-gray-600">or</div>
 
         <button className="w-full border border-gray-300 py-2 rounded-full flex justify-center items-center gap-2 hover:bg-gray-50 transition">
-          <img
+          <Image
             src="https://www.svgrepo.com/show/475656/google-color.svg"
             alt="Google"
             className="w-5 h-5"
