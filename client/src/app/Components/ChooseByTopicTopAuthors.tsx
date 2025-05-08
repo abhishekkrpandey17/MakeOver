@@ -5,8 +5,8 @@ import TopAuthors from './TopAuthors'
 
 const ChooseByTopicTopAuthors = () => {
   return (
-    <div className="flex bg-[#dbc3eb]">
-        <div className="w-[60%] ml-15 mr-[-2vmin] mt-10">
+    <div className="flex flex-wrap bg-[#dbc3eb]">
+        <div className="lg:w-[96%] ml-2 lg:ml-15 mr-[-2vmin] mt-10">
           <ChooseByTopic/>
         
         </div>

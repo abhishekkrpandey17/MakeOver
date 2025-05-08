@@ -42,7 +42,7 @@ const LatestArticles = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-3xl font-bold text-[#171619] mb-8"
+        className="text-3xl font-bold text-[#171619] mb-8 text-center"
       >
         Latest Articles
       </motion.h2>
@@ -57,7 +57,7 @@ const LatestArticles = () => {
             transition: { staggerChildren: 0.1 },
           },
         }}
-        className="grid w-240  sm:grid-cols-2 md:grid-cols-3 gap-5 mx-auto "
+        className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto"
       >
         {articles.map((article, index) => (
           <motion.div
@@ -68,7 +68,7 @@ const LatestArticles = () => {
             }}
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 150 }}
-            className="bg-[#e6d8ef]  rounded-2xl shadow-md px-5 py-5 hover:shadow-lg transition-all "
+            className="bg-[#e6d8ef] rounded-2xl shadow-md px-5 py-5 hover:shadow-lg transition-all"
           >
             <div className="w-full h-40 relative rounded-xl overflow-hidden mb-4">
               <Image
@@ -79,17 +79,18 @@ const LatestArticles = () => {
               />
             </div>
 
-            <div className="flex items-center gap-2 text-sm text-[#6c6374] mb-2 mt-6">
-              <span className="bg-[#e0cdeb] text-[#171619] px-4.5 py-2 rounded-full text-xs font-medium">
+            <div className="flex items-center gap-2 text-sm text-[#6c6374] mb-2">
+              <span className="bg-[#e0cdeb] text-[#171619] px-3 py-1 rounded-full text-xs font-medium">
                 {article.tag}
               </span>
               <span>{article.published}</span>
             </div>
 
-            <h3 className="text-lg font-semibold text-[#171619] mb-1 mt-6">
+            <h3 className="text-lg font-semibold text-[#171619] mb-2">
               {article.title}
             </h3>
-            <p className="text-sm text-[#6c6374] mt-5">{article.author}</p>
+
+            <p className="text-sm text-[#6c6374]">{article.author}</p>
 
             <div className="text-xs text-[#6c6374] mt-1">
               {article.date}

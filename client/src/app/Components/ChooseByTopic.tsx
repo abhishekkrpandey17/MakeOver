@@ -28,14 +28,14 @@ const ChooseByTopic = () => {
         hidden: { opacity: 0, y: 40 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
       }}
-      className="bg-[#f4e7fa] p-6 md:p-10 rounded-xl max-w-2xl mx-auto"
+      className="bg-[#f4e7fa] p-6 md:p-10 rounded-xl w-[95vw] lg:max-w-2xl mx-auto"
     >
       <h2 className="text-xl md:text-2xl font-bold text-[#171619] mb-6">
         Choose by Topic
       </h2>
 
       {/* Topic Buttons */}
-      <div className="flex flex-wrap gap-4 mb-8">
+      <div className="flex  gap-4 mb-8 text-sm">
         {topics.map((topic, i) => (
           <motion.button
             key={topic}
