@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="mainHero hidden lg:block">
         <div className="bg-lavender h-[90vh] 2xl:pb-16 w-screen flex">
           <div className="left lg:w-[52%]">
-            <p className="text-[9.55vmin] 2xl:text-[9vmin] tracking-[0.35vmin] font-[550] font-playfair text-darkviolet mt-12 ml-3   p-8 2xl:pl-12 leading-[13vmin]">
+            <p className="text-[9.55vmin] 2xl:text-[8.65vmin] tracking-[0.35vmin] font-[550] font-playfair text-darkviolet mt-12 ml-3   p-8 2xl:pl-12 leading-[13vmin]">
               The latest in the makeup & <br></br>
               <span>beauty world</span>
             </p>
@@ -28,13 +28,13 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          <div className="right h-full lg:w-[48%] pb-5 mt-6 ">
+          <div className="right h-full lg:w-[48%] pb-5 mt-8 ">
             <Image
               src="/cosmetic-hero.png"
               alt="cosmetic image"
               className="rounded-lg "
-              height={510}
-              width={510}
+              height={600}
+              width={600}
             />
           </div>
         </div>
@@ -42,7 +42,7 @@ const Hero = () => {
 
       {/* Mobile screen hero section */}
       <div className="relative mainHero block lg:hidden ">
-        <div className="bg-lavender h-[65vh] flex">
+        <div className="bg-lavender h-[70vh] flex">
           <div className="left w-[70%]">
             <p className="pl-4 mt-10 text-[9.5vmin] md:text-[9vmin] absolute z-[100] 2xl:text-[9.5vmin] tracking-[0.55vmin]  font-playfair font-extrabold text-darkviolet leading-[13.15vmin] md:leading-[12.15vmin]">
               The latest in <br></br>
@@ -50,7 +50,7 @@ const Hero = () => {
               <br></br>
               <span> beauty</span>
             </p>
-            <p className="ml-11 w-[32%] pr-[8px] absolute top-[44%]  z-[100]  left-[-10%] text-[3.75vmin]  leading-[7vmin] md:top-[45%] md:text-[2.15vmin] md:leading-[4vmin] md:left-[-4%] text-start">
+            <p className="ml-13 w-[32%] pr-[8px] absolute top-[44%]  z-[100]  left-[-10%] text-[3.75vmin]  leading-[7vmin] md:top-[45%] md:text-[2.15vmin] md:leading-[4vmin] md:left-[-4%] text-start">
               Your go to source for cosmetics, queries, tuts,and your favourite
               product reviews
             </p>

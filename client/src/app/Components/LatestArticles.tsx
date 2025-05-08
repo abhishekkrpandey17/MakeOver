@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 
@@ -42,10 +44,11 @@ const articles = [
 ];
 
 const LatestArticles = () => {
+  const router = useRouter();
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    <section className="bg-[#dbc3eb] py-12 px-4">
+    <section className="bg-[#dbc3eb] py-12 px-4 lg:-mt-6">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -65,7 +68,6 @@ const LatestArticles = () => {
             transition: { staggerChildren: 0.1 },
           },
         }}
-
         className="grid w-[90vw]  sm:grid-cols-2 md:grid-cols-4 gap-5 mx-auto "
       >
         {articles.map((article, index) => (
@@ -76,12 +78,15 @@ const LatestArticles = () => {
               visible: { opacity: 1, y: 0 },
             }}
             whileHover={{ scale: 1.02 }}
-
-            transition={{ type: 'spring', stiffness: 150 }}
+            transition={{ type: "spring", stiffness: 150 }}
             className="bg-[#e6d8ef] rounded-2xl shadow-md px-5 py-5 hover:shadow-lg transition-all"
-
           >
-            <div className="w-full h-40 relative rounded-xl overflow-hidden mb-4">
+            <div
+              onClick={() => {
+                router.push("/blogreader");
+              }}
+              className="w-full h-40 relative rounded-xl overflow-hidden mb-4"
+            >
               <Image
                 src={article.image}
                 alt={article.title}
