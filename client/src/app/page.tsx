@@ -1,9 +1,11 @@
 import AllAuthors from "./Components/AllAuthors";
-import ChooseByTopic from "./Components/ChooseByTopic";
+import ChooseByTopicTopAuthors from "./Components/ChooseByTopicTopAuthors";
+
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+import LatestArticles from "./Components/LatestArticles";
 import SearchBar from "./Components/SearchBar";
-import TopAuthors from "./Components/TopAuthors";
+
 
 export default function Home() {
   return (
@@ -12,15 +14,16 @@ export default function Home() {
         <Header />
       </header>
 
-      <div className="flex bg-[#dbc3eb]">
-        <ChooseByTopic/>
-        <TopAuthors/>
-      </div>
+      <SearchBar/>
+
+      <LatestArticles/>
+
+      <ChooseByTopicTopAuthors/>
 
       <AllAuthors/>
 
       <Footer/>
-      <SearchBar/>
+      
       
     </>
   );

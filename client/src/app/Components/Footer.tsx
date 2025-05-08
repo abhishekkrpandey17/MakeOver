@@ -8,16 +8,17 @@ import { useInView } from 'react-intersection-observer';
 
 const Footer = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
+    triggerOnce: false,
     threshold: 0.1,
   });
 
   return (
+    <div className='bg-[#dbc3eb]'>
     <motion.footer
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 100 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
+      transition={{ duration: 1.5, ease: 'easeOut' }}
       className="bg-[#dbc3eb] text-[#171619] py-10 px-4 md:px-16"
     >
       {/* Newsletter */}
@@ -25,7 +26,7 @@ const Footer = () => {
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.7 }}
           className="text-2xl md:text-3xl font-semibold mb-6"
         >
           Subscribe to our Newsletter
@@ -34,7 +35,7 @@ const Footer = () => {
         <motion.form
           initial={{ opacity: 0, scale: 0.95 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.8 }}
           className="flex flex-col md:flex-row items-center w-full max-w-xl rounded-full overflow-hidden border border-[#171619]"
         >
           <div className="flex items-center w-full md:w-[60%] px-4 py-3 bg-[#dbc3eb]">
@@ -58,7 +59,7 @@ const Footer = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.6 }}
+        transition={{ delay: 1 }}
         className="border-t border-[#6c6374] pt-6 flex flex-col md:flex-row items-center justify-between gap-6"
       >
         {/* Logo and Nav */}
@@ -94,7 +95,7 @@ const Footer = () => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.8 }}
+        transition={{ delay: 1.2 }}
         className="mt-6 flex flex-col md:flex-row items-center justify-between text-sm text-[#6c6374] gap-4"
       >
         <p>
@@ -115,6 +116,7 @@ const Footer = () => {
         </div>
       </motion.div>
     </motion.footer>
+    </div>
   );
 };
 

@@ -9,6 +9,7 @@ const SearchBar = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
+    <div className='bg-[#dbc3eb]'>
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
@@ -16,7 +17,7 @@ const SearchBar = () => {
       transition={{ duration: 0.6 }}
       className="w-full flex justify-center px-4"
     >
-      <form className="flex items-center bg-[#e9d9f3] rounded-full overflow-hidden max-w-xl w-full shadow-sm">
+      <form className="flex items-center bg-[#e9d9f3] rounded-full overflow-hidden max-w-xl w-full shadow-sm mt-5">
         <input
           type="text"
           placeholder="Search articles..."
@@ -32,6 +33,7 @@ const SearchBar = () => {
         </button>
       </form>
     </motion.div>
+    </div>
   );
 };
 
