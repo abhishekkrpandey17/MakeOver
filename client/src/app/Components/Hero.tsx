@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <>
       <div className="mainHero hidden lg:block">
-        <div className="bg-lavender pb-12 2xl:pb-16 w-screen flex">
+        <div className="bg-lavender h-[90vh] 2xl:pb-16 w-screen flex">
           <div className="left lg:w-[52%]">
             <p className="text-[9.55vmin] 2xl:text-[9vmin] tracking-[0.35vmin] font-[550] font-playfair text-darkviolet mt-10 ml-3   p-8 2xl:pl-12 leading-[13vmin]">
               The latest in the makeup & <br></br>
@@ -33,8 +33,8 @@ const Hero = () => {
               src="/cosmetic-hero.png"
               alt="cosmetic image"
               className="rounded-lg "
-              height={570}
-              width={570}
+              height={500}
+              width={500}
             />
           </div>
         </div>
