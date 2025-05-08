@@ -1,3 +1,4 @@
+import AllAuthors from "./Components/AllAuthors";
 import ChooseByTopic from "./Components/ChooseByTopic";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
@@ -15,6 +16,8 @@ export default function Home() {
         <ChooseByTopic/>
         <TopAuthors/>
       </div>
+
+      <AllAuthors/>
 
       <Footer/>
       <SearchBar/>
