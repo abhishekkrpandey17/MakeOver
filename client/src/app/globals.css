@@ -1,24 +1,100 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+html,
+body {
+  overflow-x: hidden;
+}
+.font-playfair {
+  font-family: "Playfair Display", serif;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color--darkviolet: #4f1f51;
+  --color-lavender: #dbc3eb; /* Backgrounds, cards */
+  --color-plum: #933194; /* Primary accents, buttons */
+  --color-orchid: #b577bd; /* Hover states, secondary buttons */
+  --color-muted-gray: #6c6374; /* Text, icons */
+  --color-deep-black: #171619; /* Headings, contrast areas */
+  --color-dusty-lilac: #9c8cac; /* Borders, soft highlights */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Dark Violet */
+.bg-darkviolet {
+  background-color: var(--color--darkviolet);
+}
+.text-darkviolet {
+  color: var(--color--darkviolet);
+}
+.border-darkviolet {
+  border-color: var(--color--darkviolet);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Lavender */
+.bg-lavender {
+  background-color: var(--color-lavender);
+}
+.text-lavender {
+  color: var(--color-lavender);
+}
+.border-lavender {
+  border-color: var(--color-lavender);
 }
 
+/* Plum */
+.bg-plum {
+  background-color: var(--color-plum);
+}
+.text-plum {
+  color: var(--color-plum);
+}
+.border-plum {
+  border-color: var(--color-plum);
+}
+
+/* Orchid */
+.bg-orchid {
+  background-color: var(--color-orchid);
+}
+.text-orchid {
+  color: var(--color-orchid);
+}
+.border-orchid {
+  border-color: var(--color-orchid);
+}
+
+/* Muted Gray */
+.bg-muted-gray {
+  background-color: var(--color-muted-gray);
+}
+.text-muted-gray {
+  color: var(--color-muted-gray);
+}
+.border-muted-gray {
+  border-color: var(--color-muted-gray);
+}
+
+/* Deep Black */
+.bg-deep-black {
+  background-color: var(--color-deep-black);
+}
+.text-deep-black {
+  color: var(--color-deep-black);
+}
+.border-deep-black {
+  border-color: var(--color-deep-black);
+}
+
+/* Dusty Lilac */
+.bg-dusty-lilac {
+  background-color: var(--color-dusty-lilac);
+}
+.text-dusty-lilac {
+  color: var(--color-dusty-lilac);
+}
+.border-dusty-lilac {
+  border-color: var(--color-dusty-lilac);
+}
 body {
   background: var(--background);
   color: var(--foreground);
