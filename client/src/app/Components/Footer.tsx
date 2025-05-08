@@ -19,7 +19,7 @@ const Footer = () => {
         initial={{ opacity: 0, y: -100 }} // Animate from top to down
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1.5, ease: 'easeOut' }}
-        className="w-full max-w-screen-xl mx-auto px-4 md:px-16 py-10 text-[#171619] bg-[#dbc3eb]"
+        className="w-full max-w-screen-xl mx-auto px-4 md:px-16 py-10 text-[#171619] bg-[#dbc3eb] border-t border-[#6c6374]"
       >
         {/* Newsletter */}
         <div className="flex flex-col items-center text-center mb-12">
@@ -60,7 +60,7 @@ const Footer = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 1 }}
-          className="border-t border-[#6c6374] pt-6 flex flex-col md:flex-row items-center justify-between gap-6"
+          className=" pt-6 flex flex-col md:flex-row items-center justify-between gap-20"
         >
           <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12 w-full justify-between">
             {/* Logo */}
