@@ -28,13 +28,13 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          <div className="right h-full lg:w-[48%] pb-5 mt-16 ">
+          <div className="right h-full lg:w-[48%] pb-5 mt-6 ">
             <Image
               src="/cosmetic-hero.png"
               alt="cosmetic image"
               className="rounded-lg "
-              height={580}
-              width={580}
+              height={510}
+              width={510}
             />
           </div>
         </div>
