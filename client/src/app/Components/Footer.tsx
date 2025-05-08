@@ -36,19 +36,19 @@ const Footer = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ delay: 0.8 }}
-            className="flex flex-col md:flex-row items-center w-full max-w-xl rounded-full overflow-hidden border border-[#171619]"
+            className="flex md:flex-row items-center w-full max-w-xl rounded-full overflow-hidden border border-[#171619]"
           >
             <div className="flex items-center w-full md:w-[60%] px-4 py-3 bg-[#dbc3eb]">
               <IoMdMail className="text-xl mr-2" />
               <input
                 type="email"
-                placeholder="Input your email"
+                placeholder="Enter your email"
                 className="w-full bg-transparent outline-none text-base placeholder:text-[#171619]"
               />
             </div>
             <button
               type="submit"
-              className="w-full md:w-[40%] py-3 bg-[#933194] text-white font-medium text-lg md:rounded-none md:rounded-r-full rounded-b-full transition-all hover:bg-[#b577bd]"
+              className="w-[40%] md:w-[40%] py-3 bg-[#933194] text-white font-medium text-lg md:rounded-none md:rounded-r-full rounded-r-full transition-all hover:bg-[#a95b99]"
             >
               Subscribe
             </button>
