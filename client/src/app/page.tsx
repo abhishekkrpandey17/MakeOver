@@ -1,11 +1,13 @@
 import AllAuthors from "./Components/AllAuthors";
-import ChooseByTopic from "./Components/ChooseByTopic";
+import ChooseByTopicTopAuthors from "./Components/ChooseByTopicTopAuthors";
+
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+import LatestArticles from "./Components/LatestArticles";
 import SearchBar from "./Components/SearchBar";
 import TopAuthors from "./Components/TopAuthors";
 import Hero from "./Components/Hero";
-// import Hero from "./Components/Hero";
+import Hero from "./Components/Hero";
 
 export default function Home() {
   return (
@@ -19,7 +21,15 @@ export default function Home() {
         <TopAuthors />
       </div>
 
+      <SearchBar/>
+
+      <LatestArticles/>
+
+      <ChooseByTopicTopAuthors/>
+
+
       <AllAuthors />
+
 
       <Footer />
       <SearchBar />
@@ -27,6 +37,9 @@ export default function Home() {
       <main>
         <Hero />
       </main>
+
+      <Footer/>
+      
     </>
   );
 }
