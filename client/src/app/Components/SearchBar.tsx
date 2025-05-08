@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 const SearchBar = () => {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
