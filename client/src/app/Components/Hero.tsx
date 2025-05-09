@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="mainHero hidden lg:block">
         <div className="bg-lavender h-[90vh] 2xl:pb-16 w-screen flex">
           <div className="left lg:w-[52%]">
-            <p className="text-[9.55vmin] 2xl:text-[8.65vmin] tracking-[0.35vmin] font-[550] font-playfair text-darkviolet mt-12 ml-3   p-8 2xl:pl-12 leading-[13vmin]">
+            <p className="text-[9.55vmin] 2xl:text-[10vmin] tracking-[0.35vmin]  font-lora text-darkviolet mt-12 ml-3   p-8 2xl:pl-12 leading-[13vmin]  2xl:leading-[14vmin]">
               The latest in the makeup & <br></br>
               <span>beauty world</span>
             </p>
@@ -33,8 +33,8 @@ const Hero = () => {
               src="/cosmetic-hero.png"
               alt="cosmetic image"
               className="rounded-lg "
-              height={600}
-              width={600}
+              height={580}
+              width={580}
             />
           </div>
         </div>
@@ -44,7 +44,7 @@ const Hero = () => {
       <div className="relative mainHero block lg:hidden ">
         <div className="bg-lavender h-[70vh] flex">
           <div className="left w-[70%]">
-            <p className="pl-4 mt-10 text-[9.5vmin] md:text-[9vmin] absolute z-[100] 2xl:text-[9.5vmin] tracking-[0.55vmin]  font-playfair font-extrabold text-darkviolet leading-[13.15vmin] md:leading-[12.15vmin]">
+            <p className="pl-4 mt-10 text-[9.5vmin] md:text-[9vmin] absolute z-[100] 2xl:text-[9.5vmin] tracking-[0.55vmin]  font-playfair font-extrabold text-darkviolet leading-[13.15vmin] md:leading-[12.15vmin] 2xl:leading-[9vmin]">
               The latest in <br></br>
               <span>makeup &</span>
               <br></br>
