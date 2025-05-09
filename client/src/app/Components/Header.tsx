@@ -67,7 +67,7 @@ const Header = () => {
         direction="left"
         className="bg-[#dbc3eb]"
       >
-        <div className="flex flex-col p-6 space-y-4 text-lg font-medium text-[#6c6374]">
+        <div className="flex flex-col p-6 space-y-4 text-md font-medium text-[#6c6374]">
           {navItems.map((item) => (
             <Link key={item.href} href={item.href} onClick={toggleDrawer}>
               {item.label}
