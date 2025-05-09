@@ -53,7 +53,7 @@ const LatestArticles = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-3xl font-bold text-[#171619] mb-8 text-center"
+        className="text-3xl font-bold text-darkviolet mb-8 text-center"
       >
         Latest Articles
       </motion.h2>

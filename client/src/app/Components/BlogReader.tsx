@@ -42,14 +42,14 @@ const BlogReader = () => {
     <>
       <Header />
       <div className="bg-lavender text-deep-black min-h-screen px-4 py-10">
-        <div className="max-w-5xl mx-auto bg-white flex flex-col justify-center items-center rounded-3xl p-6 md:p-10 shadow-xl">
+        <div className="max-w-6xl lg:max-w-5xl mx-auto bg-white flex flex-col justify-center items-center rounded-3xl p-6 pl-2 pr-2 md:p-10 shadow-xl">
           {/* Banner Image */}
-          <div className="relative rounded-xl overflow-hidden shadow-md w-[98%]  lg:w-[75%] lg:h-[60vmin]">
+          <div className="relative rounded-xl overflow-hidden shadow-md w-[99%]  lg:w-[90%] lg:h-[45vmin]">
             <Image
-              src="/images/7640.jpg"
+              src="/images/cosmo1.avif"
               alt="Winged Eyeliner"
-              width={710}
-              height={200}
+              width={900}
+              height={900}
             />
 
             <div className="absolute top-4 left-4 flex items-center bg-plum text-white text-xs px-3 py-1 rounded-full gap-2">
@@ -135,7 +135,9 @@ const BlogReader = () => {
                   placeholder="Write a comment..."
                   className="flex-grow bg-transparent outline-none text-sm px-2 text-plum"
                 />
-                <button className="text-sm text-plum font-plum">Post</button>
+                <button className="text-sm px-6 py-6 pt-2 pb-2 font-plum bg-darkviolet text-white p-2 rounded-md">
+                  Post
+                </button>
               </div>
 
               <div className="space-y-6">
