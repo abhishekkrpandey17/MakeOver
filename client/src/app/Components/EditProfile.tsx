@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
-const EditProfilePage = () => {
+const EditProfile = () => {
   const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
@@ -14,7 +14,7 @@ const EditProfilePage = () => {
         initial={{ opacity: 0, y: -40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        className="min-h-screen bg-[#dbc3eb] py-10 px-4 flex items-center justify-center"
+        className="min-h-screen bg-[#dbc3eb] py-4 px-4 flex items-center justify-center"
       >
         <div className="w-full max-w-5xl bg-white rounded-2xl p-6 md:p-10 grid grid-cols-1 lg:grid-cols-3 gap-8 shadow-lg">
 
@@ -120,4 +120,4 @@ const EditProfilePage = () => {
   );
 };
 
-export default EditProfilePage;
+export default EditProfile;

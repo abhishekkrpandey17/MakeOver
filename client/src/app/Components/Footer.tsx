@@ -18,7 +18,7 @@ const Footer = () => {
         ref={ref}
         initial={{ opacity: 0, y: -100 }} // Animate from top to down
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1.5, ease: "easeOut" }}
+        transition={{ duration: 1, ease: "easeOut" }}
         className="w-full max-w-screen-xl mx-auto px-4 md:px-16 py-10 text-[#171619] bg-[#dbc3eb] border-t border-[#6c6374]"
       >
         {/* Newsletter */}
