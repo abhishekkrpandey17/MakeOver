@@ -31,7 +31,7 @@ const Header = () => {
       <div className="max-w-8xl mx-auto flex justify-between items-center border-gray-500 border-b-1 pb-3">
         <div className="text-2xl font-bold text-[#933194]">Blogs.</div>
 
-        <nav className="hidden ml-8 md:flex space-x-8 text-darkviolet font-medium">
+        <nav className="hidden ml-12 md:flex space-x-8 text-darkviolet font-medium">
           {navItems.map((item) => (
             <Link
               key={item.href}
