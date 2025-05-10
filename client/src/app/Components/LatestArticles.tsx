@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 import Image from "next/image";
-import { useInView } from "react-intersection-observer";
+// import { useInView } from "react-intersection-observer";
 
 const articles = [
   {
@@ -45,31 +45,15 @@ const articles = [
 
 const LatestArticles = () => {
   const router = useRouter();
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  // const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
     <section className="bg-[#dbc3eb] py-12 px-4 lg:-mt-6">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-3xl font-bold text-darkviolet mb-8 text-center"
-      >
+      <h1 className="text-3xl lg:text-4xl font-lora text-darkviolet">
+        {" "}
         Latest Articles
-      </motion.h2>
-
-      <motion.div
-        ref={ref}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        variants={{
-          hidden: {},
-          visible: {
-            transition: { staggerChildren: 0.1 },
-          },
-        }}
-        className="grid w-[90vw]  sm:grid-cols-2 md:grid-cols-4 gap-5 mx-auto "
-      >
+      </h1>
+      <div className="grid w-[90vw]  sm:grid-cols-2 lg:grid-cols-4 gap-5 mx-auto mt-5">
         {articles.map((article, index) => (
           <motion.div
             key={index}
@@ -115,7 +99,7 @@ const LatestArticles = () => {
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 };

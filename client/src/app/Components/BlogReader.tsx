@@ -46,7 +46,7 @@ const BlogReader = () => {
           {/* Banner Image */}
           <div className="relative rounded-xl overflow-hidden shadow-md w-[99%]  lg:w-[90%] lg:h-[45vmin]">
             <Image
-              src="/images/cosmo1.avif"
+              src="/images/cosmo.jpg"
               alt="Winged Eyeliner"
               width={900}
               height={900}

@@ -13,7 +13,7 @@ body {
 
 .font-lora {
   font-family: "Lora", serif;
-  font-weight: 600;
+  font-weight: 510;
 }
 
 :root {
@@ -105,4 +105,9 @@ body {
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+input,
+textarea:focus {
+  outline: none;
 }

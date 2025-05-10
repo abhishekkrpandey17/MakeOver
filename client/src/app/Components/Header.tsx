@@ -31,7 +31,7 @@ const Header = () => {
       <div className="max-w-8xl mx-auto flex justify-between items-center border-gray-500 border-b-1 pb-3">
         <div className="text-2xl font-bold text-[#933194]">Blogs.</div>
 
-        <nav className="hidden ml-8 md:flex space-x-8 text-darkviolet font-medium">
+        <nav className="hidden ml-8 lg:flex space-x-8 text-darkviolet font-medium">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -43,19 +43,19 @@ const Header = () => {
           ))}
         </nav>
 
-        <div className="hidden md:flex space-x-4">
+        <div className="hidden lg:flex space-x-4">
           <button
             className="text-sm pb-2 pt-2 px-5 py-5 bg-[#933194] text-white rounded-full hover:border-white border transition-colors duration-200"
             onClick={toggleModal}
           >
             Sign in
           </button>
-          <button className="text-sm pb-2 pt-2 px-5 py-5 border border-[#933194] text-[#933194] rounded-full hover:border-white transition-colors duration-200">
+          <button className="text-sm pb-1 pt-1 px-5 py-5 border border-[#933194] text-[#933194] rounded-full hover:border-white transition-colors duration-200">
             Search
           </button>
         </div>
 
-        <button className="md:hidden" onClick={toggleDrawer}>
+        <button className="lg:hidden" onClick={toggleDrawer}>
           <Menu size={28} />
         </button>
       </div>
@@ -173,6 +173,8 @@ const Header = () => {
           <Image
             src="https://www.svgrepo.com/show/475656/google-color.svg"
             alt="Google"
+            height={15}
+            width={15}
             className="w-5 h-5"
           />
           <span>Continue with Google</span>

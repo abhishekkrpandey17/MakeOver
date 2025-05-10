@@ -42,7 +42,7 @@ const TopAuthors = () => {
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8 }}
-      className="bg-[#dbc3eb] p-6 max-w-sm mx-auto"
+      className="bg-[#dbc3eb] p-6 max-w-sm md:mx-w-2xl mx-auto"
     >
       <h2 className="text-xl font-bold text-[#171619] mb-6">Top Authors</h2>
 

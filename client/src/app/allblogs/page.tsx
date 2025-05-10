@@ -92,7 +92,7 @@ const Page = () => {
         <h1 className="text-5xl font-serif font-bold text-[#171619] mb-3">
           All Blogs
         </h1>
-        <p className="text-[#6c6374] text-lg max-w-xl mx-auto">
+        <p className="text-[#6c6374] text-lg max-w-xl mx-auto p-1">
           Meet the creative minds behind your favorite beauty and fashion
           content.
         </p>
