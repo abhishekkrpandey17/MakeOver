@@ -29,8 +29,27 @@ const Header = () => {
   return (
     <header className="bg-[#dbc3eb] text-[#171619] px-4 py-3 shadow-md pb-4 pt-4">
       <div className="max-w-8xl mx-auto flex justify-between items-center border-gray-500 border-b-1 pb-3">
-        <div className="text-2xl font-bold text-[#933194]">Blogs.</div>
+        <div className="flex gap-x-1 justify-center items-center font-lora ">
+          <Image
+            src="/images/logo3.png"
+            height={60}
+            width={60}
+            alt="Logo"
+            className="hidden lg:block"
+          />
 
+          <Image
+            src="/images/logo3.png"
+            height={56}
+            width={56}
+            alt="Logo"
+            className="block lg:hidden"
+          />
+
+          <p className="bg-darkviolet p-2 px-5 py-1 text-[1.95vmin] text-white rounded-xl">
+            Blogs
+          </p>
+        </div>
         <nav className="hidden ml-12 md:flex space-x-8 text-darkviolet font-medium">
           {navItems.map((item) => (
             <Link

@@ -49,7 +49,7 @@ const LatestArticles = () => {
 
   return (
     <section className="bg-[#dbc3eb] py-12 px-4 lg:-mt-6">
-      <h1 className="text-3xl lg:text-4xl font-lora text-darkviolet">
+      <h1 className="text-3xl lg:text-4xl font-bold text-darkviolet">
         {" "}
         Latest Articles
       </h1>

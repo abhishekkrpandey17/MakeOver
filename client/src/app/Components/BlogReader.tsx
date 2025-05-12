@@ -74,7 +74,7 @@ const BlogReader = () => {
 
           {/* Title + Tags */}
           <div className="mt-6 flex flex-col md:flex-row md:items-start md:justify-between md:gap-8 flex-wrap">
-            <h1 className="text-3xl md:text-4xl font-playfair font-bold leading-snug">
+            <h1 className="text-3xl md:text-4xl font-playfair leading-snug">
               Master the Perfect Winged Eyeliner in 5 Easy Steps
             </h1>
 

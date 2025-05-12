@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="mainHero hidden lg:block">
         <div className="bg-lavender h-[90vh] 2xl:pb-16 w-screen flex">
           <div className="left lg:w-[52%]">
-            <p className="text-[9.55vmin] 2xl:text-[11vmin] tracking-[0.35vmin]  font-lora text-darkviolet mt-12 ml-3   p-8 2xl:pl-12 leading-[13vmin]  2xl:leading-[13.95vmin]">
+            <p className="text-[9.55vmin] 2xl:text-[11vmin] tracking-[0.35vmin]  font-lora text-darkviolet mt-9 ml-3   p-8 2xl:pl-12 leading-[13vmin]  2xl:leading-[13.95vmin]">
               The latest in the makeup & <br></br>
               <span>beauty world</span>
             </p>
@@ -30,7 +30,7 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          <div className="right h-full lg:w-[48%] pb-5 mt-8 ">
+          <div className="right h-full lg:w-[48%] pb-5 mt-4 ">
             <Image
               src="/cosmetic-hero.png"
               alt="cosmetic image"
