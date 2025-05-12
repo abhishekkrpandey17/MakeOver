@@ -22,7 +22,7 @@ const blogs = [
   },
 ];
 
-const AuthorProfile = () => {
+const Profilepage = () => {
   const { ref, inView } = useInView({ triggerOnce: false, threshold: 0.1 });
 
   return (
@@ -94,4 +94,4 @@ const AuthorProfile = () => {
   );
 };
 
-export default AuthorProfile;
+export default Profilepage;

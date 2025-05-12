@@ -1,13 +1,14 @@
 import React from 'react'
 import Header from '../Components/Header'
-import AuthorProfile from '../Components/AuthorProfile'
+
 import Footer from '../Components/Footer'
+import Profilepage from '../Components/Profilepage'
 
 const page = () => {
   return (
     <>
     <Header/>
-    <AuthorProfile/>
+    <Profilepage/>
     <Footer/>
     
     </>
