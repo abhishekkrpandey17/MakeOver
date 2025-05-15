@@ -3,7 +3,7 @@ import { Blog } from "../models/Blog.js";
 // Create a blog post
 export const createBlog = async (req, res) => {
   try {
-    const { title, content, tags, authorId, link } = req.body;
+    const { title, content, tags } = req.body;
     const images = req.files?.map((file) => file.filename) || [];
 
     const blog = new Blog({
@@ -11,13 +11,13 @@ export const createBlog = async (req, res) => {
       content,
       tags: tags?.split(",") || [],
       images,
-      authorId,
-      link,
+      authorId: req.authorId, // ✅ from middleware
     });
 
     await blog.save();
     res.status(201).json({ success: true, blog });
   } catch (err) {
+    console.error("Blog creation error:", err.message);
     res.status(500).json({ success: false, error: err.message });
   }
 };
@@ -55,7 +55,7 @@ export const getBlogById = async (req, res) => {
 // Update a blog
 export const updateBlog = async (req, res) => {
   try {
-    const { title, content, tags, link } = req.body;
+    const { title, content, tags } = req.body;
     const newImages = req.files?.map((f) => f.filename) || [];
 
     const updated = await Blog.findByIdAndUpdate(
@@ -64,7 +64,7 @@ export const updateBlog = async (req, res) => {
         title,
         content,
         tags: tags?.split(",") || [],
-        link,
+
         ...(newImages.length > 0 && { images: newImages }),
       },
       { new: true }

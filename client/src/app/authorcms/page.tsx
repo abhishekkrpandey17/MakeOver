@@ -1,11 +1,11 @@
 import React from "react";
-import Header from "../Components/Header";
 import AuthorCMS from "../Components/AuthorCMS";
 import Footer from "../Components/Footer";
+import AuthorCMSHeader from "../Components/AuthorCMSHeader";
 const page = () => {
   return (
     <div>
-      <Header />
+      <AuthorCMSHeader />
       <AuthorCMS />
       <Footer />
     </div>

@@ -1,23 +1,57 @@
 "use client";
+
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const AuthorLogin = () => {
   const [form, setForm] = useState({ uid: "", email: "" });
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Logging in with UID: ${form.uid}, Email: ${form.email}`);
+    setLoading(true);
+
+    try {
+      const res = await axios.post(
+        process.env.NEXT_PUBLIC_APP_API_TEST_URL + "api/v1/authors/login",
+        {
+          uid: form.uid,
+          email: form.email,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (res.data.success) {
+        router.push("/authorcms");
+      } else {
+        alert("⚠️ Login failed: " + res.data.message);
+      }
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        console.error("Axios error:", err.response?.data || err.message);
+      } else {
+        console.error("Unexpected error:", err);
+      }
+      alert("❌ Login error");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <section className="pb-24 pt-14 md:pt-36 flex flex-col md:flex-row items-center justify-center bg-[#f6e8fb] px-4 py-12">
-      {/* Left: Visual + Tagline (Hidden on Mobile) */}
+      {/* Left Visual */}
       <div className="hidden md:flex md:w-[43%] bg-[#4c0f5a] text-white rounded-2xl md:rounded-r-none flex-col justify-center items-center p-10">
         <Image
           src="/images/authorlogin.png"
@@ -31,12 +65,12 @@ const AuthorLogin = () => {
           </h2>
           <p className="text-purple-200 text-sm max-w-sm mx-auto mb-6">
             Share your thoughts, inspire readers, and be part of the beauty
-            revolution.💄
+            revolution. 💄
           </p>
         </div>
       </div>
 
-      {/* Right: Login Form */}
+      {/* Right Login Form */}
       <motion.div
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
@@ -77,9 +111,12 @@ const AuthorLogin = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded-full transition duration-300"
+            disabled={loading}
+            className={`w-full ${
+              loading ? "bg-pink-300" : "bg-pink-500 hover:bg-pink-600"
+            } text-white font-semibold py-2 rounded-full transition duration-300`}
           >
-            Log In
+            {loading ? "Logging in..." : "Log In"}
           </button>
         </form>
         <p className="mt-6 text-center text-sm text-purple-500">

@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import AddBlog from "./AddBlog";
 import ViewBlogs from "./ViewBlogs";
 import Followers from "./Followers";
+import BlogEditor from "../blogEditor/blogEditor";
 
 const AuthorCMS = () => {
   const [tab, setTab] = useState("add");
 
   return (
-    <div className="pb-12 pt-12 bg-[#e8d5f5] p-6">
+    <div className="pb-36 pt-24 bg-[#e8d5f5] p-6">
       <div className="max-w-5xl mx-auto">
         <div className="flex gap-4 justify-center mb-6">
           <button
@@ -44,7 +44,7 @@ const AuthorCMS = () => {
         </div>
 
         <div>
-          {tab === "add" && <AddBlog />}
+          {tab === "add" && <BlogEditor />}
           {tab === "view" && <ViewBlogs />}
           {tab === "followers" && <Followers />}
         </div>

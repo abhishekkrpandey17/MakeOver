@@ -9,7 +9,7 @@ import userRoutes from "./routes/userRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import replyRoutes from "./routes/replyRoutes.js";
-
+import authorRoutes from "./routes/authorRoutes.js";
 // import swaggerUi from "swagger-ui-express";
 // import { swaggerSpec } from "./swagger.js";
 
@@ -42,6 +42,7 @@ app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/blogs", blogRoutes);
 app.use("/api/v1/comments", commentRoutes);
 app.use("/api/v1/replies", replyRoutes);
+app.use("/api/v1/authors", authorRoutes);
 
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
