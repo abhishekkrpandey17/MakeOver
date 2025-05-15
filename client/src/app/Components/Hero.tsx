@@ -52,7 +52,7 @@ const Hero = () => {
               <br></br>
               <span> beauty</span>
             </p>
-            <p className=" ml-13 md:ml-15 w-[32%] pr-[4px] absolute top-[39%]  z-[100]  left-[-10%] text-[3.75vmin]  leading-[7vmin] md:top-[45%] md:text-[2.15vmin] md:leading-[4vmin] md:left-[-4%] text-start">
+            <p className=" ml-13 md:ml-15 w-[32%] pr-[4px] absolute top-[45%]  z-[100]  left-[-10%] text-[3.75vmin]  leading-[7vmin] md:top-[45%] md:text-[2.15vmin] md:leading-[4vmin] md:left-[-4%] text-start">
               You own blog platform for all your beauty needs from our experts
             </p>
           </div>
