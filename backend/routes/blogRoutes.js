@@ -4,14 +4,16 @@ import {
   getBlogs,
   getBlogById,
   updateBlog,
-  deleteBlog
+  deleteBlog,
 } from "../controllers/blogController.js";
+import { upload } from "../middlewares/uploadMiddleware.js";
+
 const router = express.Router();
 
-router.post("/", createBlog);
+router.post("/create", upload.array("images", 5), createBlog);
 router.get("/", getBlogs);
 router.get("/:id", getBlogById);
-router.put("/:id", updateBlog);
+router.put("/:id", upload.array("images", 5), updateBlog);
 router.delete("/:id", deleteBlog);
 
 export default router;
