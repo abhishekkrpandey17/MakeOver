@@ -38,9 +38,9 @@ export const loginAuthor = async (req, res) => {
 
     res.cookie("authorToken", token, {
       httpOnly: true,
-      sameSite: "Lax",
-      secure: false,
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
     res.status(200).json({ success: true, token, author });
@@ -48,7 +48,6 @@ export const loginAuthor = async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 };
-
 // Logout (clear cookie)
 export const logoutAuthor = (req, res) => {
   res.clearCookie("authorToken");

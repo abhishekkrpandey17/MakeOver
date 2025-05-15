@@ -29,6 +29,7 @@ export const registerAuthor = async (req, res) => {
 };
 
 // Login author
+// Login author
 export const loginAuthor = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -42,8 +43,8 @@ export const loginAuthor = async (req, res) => {
 
     res.cookie("authorToken", token, {
       httpOnly: true,
-      sameSite: "Lax",
-      secure: false,
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+      secure: process.env.NODE_ENV === "production",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
