@@ -1,15 +1,15 @@
 import React from "react";
 import Header from "../Components/Header";
-import AuthorProfile from "../Components/AuthorProfile";
+import AuthorLogin from "./AuthorLogin";
 import Footer from "../Components/Footer";
 
 const page = () => {
   return (
-    <>
+    <div>
       <Header />
-      <AuthorProfile />
+      <AuthorLogin />
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -1,35 +1,114 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Modal from "react-modal";
 import Image from "next/image";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 Modal.setAppElement("body");
 
 const Header = () => {
+  const API_BASE_URL = process.env.NEXT_PUBLIC_APP_API_TEST_URL;
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSignIn, setIsSignIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkLogin = async () => {
+      try {
+        await axios.post(
+          `${API_BASE_URL}api/v1/users/isLogin`,
+          {},
+          { withCredentials: true }
+        );
+        setIsLoggedIn(true);
+      } catch {
+        setIsLoggedIn(false);
+      }
+    };
+    checkLogin();
+  });
 
   const toggleDrawer = () => setIsOpen((prev) => !prev);
   const toggleModal = () => setIsModalOpen((prev) => !prev);
   const toggleForm = () => setIsSignIn((prev) => !prev);
 
-  const navItems = [
-    { label: "Home", href: "/" },
-    { label: "Authors", href: "/allauthors" },
-    { label: "Blogs", href: "/allblogs" },
-    { label: "Community", href: "/community" },
-    { label: "Find service", href: "/findservice" },
-  ];
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        `${API_BASE_URL}api/v1/users/logout`,
+        {},
+        { withCredentials: true }
+      );
+      alert("Logged out successfully");
+      setIsLoggedIn(false);
+      setShowMenu(false);
+      router.refresh();
+    } catch {
+      alert("Logout failed");
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+
+    interface FormData {
+      email: string;
+      password: string;
+      name?: string;
+      phone?: string;
+      gender?: string;
+      preferences?: string[];
+    }
+
+    const data: FormData = {
+      email: form.email.value,
+      password: form.password.value,
+    };
+
+    if (!isSignIn) {
+      const nameInput = form.elements.namedItem(
+        "name"
+      ) as HTMLInputElement | null;
+      data.name = nameInput?.value || "";
+      data.phone = form.phone?.value;
+      data.gender = form.gender?.value;
+      data.preferences = [form.preference?.value].filter((p) => p);
+    }
+
+    const endpoint = isSignIn
+      ? `${API_BASE_URL}api/v1/users/login`
+      : `${API_BASE_URL}api/v1/users/register`;
+
+    try {
+      const res = await axios.post(endpoint, data, {
+        withCredentials: true,
+        headers: { "Content-Type": "application/json" },
+      });
+      alert(res.data.message || "Success");
+      setIsLoggedIn(true);
+      setIsModalOpen(false);
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err) && err.response?.data?.message) {
+        alert(err.response.data.message);
+      } else {
+        alert("Something went wrong");
+      }
+    }
+  };
 
   return (
     <header className="bg-[#dbc3eb] text-[#171619] px-4 py-3 shadow-md pb-4 pt-4">
       <div className="max-w-8xl mx-auto flex justify-between items-center border-gray-500 border-b-1 pb-3">
-        <div className="flex gap-x-1 justify-center items-center font-lora ">
+        <div className="flex gap-x-1 justify-center items-center font-lora">
           <Image
             src="/images/logo3.png"
             height={60}
@@ -37,7 +116,6 @@ const Header = () => {
             alt="Logo"
             className="hidden lg:block"
           />
-
           <Image
             src="/images/logo3.png"
             height={56}
@@ -45,65 +123,132 @@ const Header = () => {
             alt="Logo"
             className="block lg:hidden"
           />
-
-          <p className="bg-darkviolet p-2 px-5 py-1 text-[1.95vmin] text-white rounded-xl">
+          <p className="bg-darkviolet p-2 px-5 py-1 text-white rounded-xl">
             Blogs
           </p>
         </div>
-        <nav className="hidden ml-12 md:flex space-x-8 text-darkviolet font-medium">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="border-b border-transparent hover:border-white hover:text-[#933194] pb-1 transition-all duration-200"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
 
-        <div className="hidden lg:flex space-x-4">
-          <button
-            className="text-sm pb-2 pt-2 px-5 py-5 bg-[#933194] text-white rounded-full hover:border-white border transition-colors duration-200"
-            onClick={toggleModal}
-          >
-            Sign in
-          </button>
-          <button className="text-sm pb-1 pt-1 px-5 py-5 border border-[#933194] text-[#933194] rounded-full hover:border-white transition-colors duration-200">
-            Search
-          </button>
+        {/* Desktop */}
+        <div className="hidden lg:flex items-center space-x-4 relative">
+          {!isLoggedIn ? (
+            <>
+              <button
+                onClick={toggleModal}
+                className="text-sm px-5 py-2 bg-[#933194] text-white rounded-full"
+              >
+                Sign in
+              </button>
+              <button className="text-sm px-5 py-2 border border-[#933194] text-[#933194] rounded-full">
+                Search
+              </button>
+            </>
+          ) : (
+            <>
+              <Image
+                src="/images/user.png"
+                alt="Profile"
+                width={36}
+                height={36}
+                className="rounded-full cursor-pointer"
+                onClick={() => setShowMenu((prev) => !prev)}
+              />
+              {showMenu && (
+                <div className="absolute top-12 right-0 w-40 bg-white shadow-md rounded-lg z-50 text-sm">
+                  <Link
+                    href="/profile"
+                    className="block px-4 py-2 hover:bg-gray-100 text-darkviolet"
+                  >
+                    Profile
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left text-red-600 px-4 py-2 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </div>
 
-        <button className="lg:hidden" onClick={toggleDrawer}>
-          <Menu size={28} />
-        </button>
+        {/* Mobile */}
+        {!isLoggedIn ? (
+          <button className="lg:hidden" onClick={toggleDrawer}>
+            <Menu size={28} />
+          </button>
+        ) : (
+          <div className="relative lg:hidden ml-2">
+            <Image
+              src="/images/user.png"
+              alt="Profile"
+              width={36}
+              height={36}
+              className="rounded-full cursor-pointer"
+              onClick={() => setShowMenu((prev) => !prev)}
+            />
+            {showMenu && (
+              <div className="absolute top-12 right-0 w-40 bg-white shadow-md rounded-lg z-50 text-sm">
+                <Link
+                  href="/profile"
+                  className="block px-4 py-2 hover:bg-gray-100 text-darkviolet"
+                >
+                  Profile
+                </Link>
+                <button
+                  onClick={() => {
+                    setShowMenu(false);
+                    handleLogout();
+                  }}
+                  className="w-full text-left text-red-600 px-4 py-2 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Drawer */}
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}
         direction="left"
-        className="bg-[#dbc3eb]"
+        className="bg-[#dbc3eb] p-4"
       >
-        <div className="flex flex-col p-6 space-y-4 text-md font-medium text-[#6c6374]">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href} onClick={toggleDrawer}>
-              {item.label}
-            </Link>
-          ))}
-          <button
-            className="w-full mt-4 pt-3 px-4 py-2 bg-[#933194] text-white rounded-full hover:border-white border transition-colors duration-200"
-            onClick={() => {
-              toggleDrawer();
-              toggleModal();
-            }}
-          >
-            Sign in
-          </button>
-          <button className="w-full pt-3 px-4 py-2 border border-[#933194] text-[#933194] rounded-full hover:border-white transition-colors duration-200">
-            Search
-          </button>
+        <div className="flex flex-col space-y-4 text-md font-medium text-[#6c6374]">
+          <div className="flex justify-end mb-2">
+            <button onClick={toggleDrawer}>
+              <X size={24} className="text-[#933194]" />
+            </button>
+          </div>
+          <Link href="/" onClick={toggleDrawer}>
+            Home
+          </Link>
+          <Link href="/allauthors" onClick={toggleDrawer}>
+            Authors
+          </Link>
+          <Link href="/allblogs" onClick={toggleDrawer}>
+            Blogs
+          </Link>
+          <Link href="/community" onClick={toggleDrawer}>
+            Community
+          </Link>
+          <Link href="/findservice" onClick={toggleDrawer}>
+            Find service
+          </Link>
+          {!isLoggedIn && (
+            <button
+              className="w-full mt-4 pt-3 px-4 py-2 bg-[#933194] text-white rounded-full hover:border-white border"
+              onClick={() => {
+                setIsOpen(false);
+                setTimeout(() => setIsModalOpen(true), 250);
+              }}
+            >
+              Sign in
+            </button>
+          )}
         </div>
       </Drawer>
 
@@ -112,49 +257,43 @@ const Header = () => {
         isOpen={isModalOpen}
         onRequestClose={toggleModal}
         className="relative bg-white w-[90%] max-w-md mx-auto lg:mt-[4vh] p-6 rounded-xl shadow-xl outline-none"
-        overlayClassName="fixed inset-0 bg-white/30 backdrop-blur-sm flex justify-center items-center z-1000"
+        overlayClassName="fixed inset-0 bg-white/30 backdrop-blur-sm flex justify-center items-center z-100"
       >
-        {/* Close Icon */}
         <button
           onClick={toggleModal}
           className="absolute top-4 right-4 text-[#933194] hover:text-[#b577bd]"
         >
           <X size={20} />
         </button>
-
         <h2 className="text-xl font-bold text-center text-[#933194] mb-4">
           {isSignIn ? "Sign In" : "Register"}
         </h2>
-
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           {!isSignIn && (
             <>
               <input
                 type="text"
+                name="name"
                 placeholder="Full Name"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#933194]"
+                className="w-full border px-4 py-2 rounded-lg"
               />
               <input
                 type="tel"
+                name="phone"
                 placeholder="Phone Number"
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#933194]"
+                className="w-full border px-4 py-2 rounded-lg"
               />
               <div className="flex space-x-4">
-                <label className="flex items-center space-x-1">
-                  <input type="radio" name="gender" value="Male" />
-                  <span>Male</span>
-                </label>
-                <label className="flex items-center space-x-1">
-                  <input type="radio" name="gender" value="Female" />
-                  <span>Female</span>
-                </label>
-                <label className="flex items-center space-x-1">
-                  <input type="radio" name="gender" value="Other" />
-                  <span>Other</span>
-                </label>
+                {["Male", "Female", "Other"].map((g) => (
+                  <label key={g} className="flex items-center space-x-1">
+                    <input type="radio" name="gender" value={g} />
+                    <span>{g}</span>
+                  </label>
+                ))}
               </div>
               <select
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#933194]"
+                name="preference"
+                className="w-full border px-4 py-2 rounded-lg"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -170,13 +309,15 @@ const Header = () => {
           )}
           <input
             type="email"
+            name="email"
             placeholder="Email"
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#933194]"
+            className="w-full border px-4 py-2 rounded-lg"
           />
           <input
             type="password"
+            name="password"
             placeholder="Password"
-            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#933194]"
+            className="w-full border px-4 py-2 rounded-lg"
           />
           <button
             type="submit"
@@ -185,20 +326,6 @@ const Header = () => {
             {isSignIn ? "Sign In" : "Register"}
           </button>
         </form>
-
-        <div className="my-4 text-center text-sm text-gray-600">or</div>
-
-        <button className="w-full border border-gray-300 py-2 rounded-full flex justify-center items-center gap-2 hover:bg-gray-50 transition">
-          <Image
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            alt="Google"
-            height={15}
-            width={15}
-            className="w-5 h-5"
-          />
-          <span>Continue with Google</span>
-        </button>
-
         <p className="text-sm text-center text-[#6c6374] mt-4">
           {isSignIn ? "Don't have an account?" : "Already have an account?"}{" "}
           <button

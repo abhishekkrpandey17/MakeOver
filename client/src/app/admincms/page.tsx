@@ -1,15 +1,15 @@
 import React from "react";
+import AdminCMS from "../Components/AdminCMS";
 import Header from "../Components/Header";
-import AuthorProfile from "../Components/AuthorProfile";
 import Footer from "../Components/Footer";
 
 const page = () => {
   return (
-    <>
+    <div>
       <Header />
-      <AuthorProfile />
+      <AdminCMS />
       <Footer />
-    </>
+    </div>
   );
 };
 

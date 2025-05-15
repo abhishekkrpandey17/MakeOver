@@ -14,7 +14,7 @@ const Hero = () => {
               <span>beauty world</span>
             </p>
 
-            <p className="ml-12 w-[80%] text-[2vmin] leading-[4vmin] 2xl:ml-14">
+            <p className=" ml-12 w-[80%] text-[2vmin] leading-[4vmin] 2xl:ml-14">
               Your go to source for cosmetic product, tutorials, quetions{" "}
               <br></br> and product reviews
             </p>
@@ -35,8 +35,8 @@ const Hero = () => {
               src="/cosmetic-hero.png"
               alt="cosmetic image"
               className="rounded-lg "
-              height={580}
-              width={580}
+              height={595}
+              width={595}
             />
           </div>
         </div>
@@ -46,18 +46,18 @@ const Hero = () => {
       <div className="relative mainHero block lg:hidden ">
         <div className="bg-lavender h-[70vh] md:h-[80vh] flex">
           <div className="left w-[70%]">
-            <p className="pl-4 md:pl-8 mt-10 md:mt-18 text-[9.5vmin] md:text-[9vmin] absolute z-[100] 2xl:text-[9.5vmin] tracking-[0.55vmin]  font-lora font-extrabold text-darkviolet leading-[13.15vmin] md:leading-[12.15vmin] 2xl:leading-[9vmin]">
+            <p className="pl-3 md:pl-8 mt-9 md:mt-15 text-[10.56vmin] md:text-[9vmin] absolute z-[100] 2xl:text-[9.5vmin] tracking-[0.55vmin]  font-lora font-bold text-darkviolet leading-[17.15vmin] md:leading-[12.15vmin] 2xl:leading-[9vmin]">
               The latest in <br></br>
               <span>makeup &</span>
               <br></br>
               <span> beauty</span>
             </p>
-            <p className="ml-13 md:ml-15 w-[32%] pr-[4px] absolute top-[39%]  z-[100]  left-[-10%] text-[3.75vmin]  leading-[7vmin] md:top-[45%] md:text-[2.15vmin] md:leading-[4vmin] md:left-[-4%] text-start">
+            <p className=" ml-13 md:ml-15 w-[32%] pr-[4px] absolute top-[39%]  z-[100]  left-[-10%] text-[3.75vmin]  leading-[7vmin] md:top-[45%] md:text-[2.15vmin] md:leading-[4vmin] md:left-[-4%] text-start">
               You own blog platform for all your beauty needs from our experts
             </p>
           </div>
 
-          <div className="imageHolder absolute top-[19%] left-[36%]  w-[61vw] h-[58vh] ">
+          <div className="imageHolder absolute top-[22%] left-[35%]  w-[61vw] h-[58vh] ">
             <img
               src="/cosmetic-hero.png"
               className="max-h-full max-w-full rounded-2xl"
