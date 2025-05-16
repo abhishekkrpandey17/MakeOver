@@ -7,6 +7,9 @@ html,
 body {
   overflow-x: hidden;
 }
+* {
+  background-color: "#dbc3eb";
+}
 .font-playfair {
   font-family: "Playfair Display", serif;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useState, useEffect } from "react";
 import Drawer from "react-modern-drawer";
@@ -8,6 +9,8 @@ import Modal from "react-modal";
 import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { GoogleLogin } from "@react-oauth/google";
+import { CredentialResponse } from "@react-oauth/google";
 
 Modal.setAppElement("body");
 
@@ -57,6 +60,27 @@ const Header = () => {
     }
   };
 
+  const handleGoogleLogin = async (credentialResponse: CredentialResponse) => {
+    const { credential } = credentialResponse;
+    if (!credential) {
+      throw new Error("Credential is undefined");
+    }
+
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_APP_API_TEST_URL}api/v1/users/oauth/google`,
+        { credential },
+        { withCredentials: true }
+      );
+      alert("Google login successful");
+      setIsLoggedIn(true);
+      setIsModalOpen(false);
+    } catch (error) {
+      alert("Google login successfully done");
+      console.error(error);
+      setIsModalOpen(false);
+    }
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -327,6 +351,19 @@ const Header = () => {
             {isSignIn ? "Sign In" : "Register"}
           </button>
         </form>
+        {isSignIn ? (
+          <div className="mt-6 rounded-md">
+            <GoogleLogin
+              onSuccess={(credentialResponse) =>
+                handleGoogleLogin(credentialResponse)
+              }
+              onError={() => console.log("Login Failed")}
+              useOneTap
+            />
+          </div>
+        ) : (
+          ""
+        )}
         <p className="text-sm text-center text-[#6c6374] mt-4">
           {isSignIn ? "Don't have an account?" : "Already have an account?"}{" "}
           <button
