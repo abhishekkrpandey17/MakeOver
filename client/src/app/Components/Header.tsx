@@ -50,9 +50,10 @@ const Header = () => {
       alert("Logged out successfully");
       setIsLoggedIn(false);
       setShowMenu(false);
-      router.refresh();
+      router.replace("/");
     } catch {
       alert("Logout failed");
+      router.refresh();
     }
   };
 
@@ -214,7 +215,7 @@ const Header = () => {
       <Drawer
         open={isOpen}
         onClose={toggleDrawer}
-        direction="left"
+        direction="right"
         className="bg-[#dbc3eb] p-4"
       >
         <div className="flex flex-col space-y-4 text-md font-medium text-[#6c6374]">

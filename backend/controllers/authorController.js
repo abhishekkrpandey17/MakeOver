@@ -2,19 +2,18 @@ import { Author } from "../models/Author.js";
 import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET;
-console.log(JWT_SECRET);
 
 // Register new author (no password)
 export const registerAuthor = async (req, res) => {
   try {
-    const { uid, name, email, experience, bio } = req.body;
+    const { uid, name, email, experience, bio, interest } = req.body;
 
     // Check for existing UID or email
     const existing = await Author.findOne({ $or: [{ uid }, { email }] });
     if (existing)
       return res.status(400).json({ message: "UID or Email already used" });
 
-    const author = new Author({ uid, name, email, experience, bio });
+    const author = new Author({ uid, name, email, experience, bio, interest });
     await author.save();
 
     res.status(201).json({ success: true, author });

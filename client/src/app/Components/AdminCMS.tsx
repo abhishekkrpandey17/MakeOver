@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useState } from "react";
+import axios from "axios";
 
 const authors = [
   {
@@ -43,28 +45,69 @@ const blogs = [
 export default function AdminCMS() {
   const [tab, setTab] = useState("dashboard");
   const [blogList, setBlogList] = useState(blogs);
+  const [formData, setFormData] = useState({
+    uid: "",
+    name: "",
+    email: "",
+    experience: "",
+    bio: "",
+    interest: "", // ✅ New field
+  });
 
   const handleDeleteBlog = (idx: number) => {
     setBlogList(blogList.filter((_, i) => i !== idx));
   };
 
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleAddAuthor = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_APP_API_TEST_URL}api/v1/authors/register`,
+        formData
+      );
+      alert("Author registered successfully!");
+      setFormData({
+        uid: "",
+        name: "",
+        email: "",
+        experience: "",
+        bio: "",
+        interest: "",
+      });
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err) && err.response) {
+        alert(err.response.data?.message || "Failed to register author");
+      } else {
+        alert("An unexpected error occurred");
+      }
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#e8d5f5] p-6">
-      {/* Nav Switcher */}
-      <div className="flex gap-4 justify-center mb-8">
-        {["dashboard", "author", "blogs", "role"].map((key: string) => (
-          <button
-            key={key}
-            onClick={() => setTab(key)}
-            className={`px-5 py-2 rounded-full font-semibold capitalize transition duration-200 ${
-              tab === key
-                ? "bg-[#4b1a54] text-white"
-                : "bg-white text-[#4b1a54] border border-[#b97ec5] hover:bg-[#f3dbfb]"
-            }`}
-          >
-            {key}
-          </button>
-        ))}
+    <div className="pt-20 pb-32 bg-[#e8d5f5] p-6">
+      {/* Tab Switcher */}
+      <div className="flex gap-4 justify-center mb-8 flex-wrap">
+        {["dashboard", "author", "blogs", "role", "add-author"].map(
+          (key: string) => (
+            <button
+              key={key}
+              onClick={() => setTab(key)}
+              className={`px-5 py-2 rounded-full font-semibold capitalize transition duration-200 ${
+                tab === key
+                  ? "bg-[#4b1a54] text-white"
+                  : "bg-white text-[#4b1a54] border border-[#b97ec5] hover:bg-[#f3dbfb]"
+              }`}
+            >
+              {key.replace("-", " ")}
+            </button>
+          )
+        )}
       </div>
 
       {/* Dashboard */}
@@ -91,7 +134,7 @@ export default function AdminCMS() {
             ))}
           </div>
 
-          {/* Line Graph */}
+          {/* SVG Line Graph */}
           <div className="bg-white rounded-xl shadow p-6">
             <h3 className="text-lg font-semibold text-[#4b1a54] mb-4">
               Growth Overview
@@ -114,7 +157,7 @@ export default function AdminCMS() {
         </div>
       )}
 
-      {/* Author Section */}
+      {/* Author List */}
       {tab === "author" && (
         <div>
           <h2 className="text-2xl font-bold text-[#4b1a54] mb-6">
@@ -144,7 +187,7 @@ export default function AdminCMS() {
         </div>
       )}
 
-      {/* Blog Section */}
+      {/* Blogs */}
       {tab === "blogs" && (
         <div>
           <h2 className="text-2xl font-bold text-[#4b1a54] mb-6">
@@ -179,7 +222,7 @@ export default function AdminCMS() {
         </div>
       )}
 
-      {/* Role Section */}
+      {/* Role Assignment */}
       {tab === "role" && (
         <div className="flex justify-center">
           <form
@@ -205,6 +248,70 @@ export default function AdminCMS() {
             </select>
             <button className="w-full bg-[#4b1a54] text-white px-6 py-2 rounded-full hover:bg-[#3a0e47] transition">
               Assign Role
+            </button>
+          </form>
+        </div>
+      )}
+
+      {/* Add Author */}
+      {tab === "add-author" && (
+        <div className="flex justify-center">
+          <form
+            onSubmit={handleAddAuthor}
+            className="bg-white rounded-xl shadow p-6 w-full max-w-xl"
+          >
+            <h2 className="text-2xl font-bold text-[#4b1a54] mb-6 text-center">
+              Add New Author
+            </h2>
+            <input
+              name="uid"
+              value={formData.uid}
+              onChange={handleInputChange}
+              placeholder="UID"
+              required
+              className="w-full border border-[#b97ec5] px-4 py-2 mb-4 rounded"
+            />
+            <input
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+              placeholder="Full Name"
+              required
+              className="w-full border border-[#b97ec5] px-4 py-2 mb-4 rounded"
+            />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              placeholder="Email"
+              required
+              className="w-full border border-[#b97ec5] px-4 py-2 mb-4 rounded"
+            />
+            <input
+              name="experience"
+              value={formData.experience}
+              onChange={handleInputChange}
+              placeholder="Experience (e.g. 3 years)"
+              className="w-full border border-[#b97ec5] px-4 py-2 mb-4 rounded"
+            />
+            <input
+              name="interest"
+              value={formData.interest}
+              onChange={handleInputChange}
+              placeholder="Interest (e.g. skincare, content writing)"
+              className="w-full border border-[#b97ec5] px-4 py-2 mb-4 rounded"
+            />
+            <textarea
+              name="bio"
+              value={formData.bio}
+              onChange={handleInputChange}
+              placeholder="Short Bio"
+              className="w-full border border-[#b97ec5] px-4 py-2 mb-4 rounded"
+              rows={3}
+            />
+            <button className="w-full bg-[#4b1a54] text-white px-6 py-2 rounded-full hover:bg-[#3a0e47] transition">
+              Register Author
             </button>
           </form>
         </div>

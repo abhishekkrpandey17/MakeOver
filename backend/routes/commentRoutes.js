@@ -1,5 +1,9 @@
 import express from "express";
-import { createComment, likeComment, dislikeComment } from "../controllers/commentController.js";
+import {
+  createComment,
+  likeComment,
+  dislikeComment,
+} from "../controllers/commentController.js";
 import { verifyUser } from "../middlewares/verifyUser.js";
 const router = express.Router();
 

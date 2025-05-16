@@ -18,7 +18,7 @@ export const likeComment = async (req, res) => {
     const comment = await Comment.findById(commentId);
     if (!comment.likes.includes(userId)) {
       comment.likes.push(userId);
-      comment.dislikes = comment.dislikes.filter(id => id !== userId);
+      comment.dislikes = comment.dislikes.filter((id) => id !== userId);
       await comment.save();
     }
     res.json({ message: "Comment liked" });
@@ -35,7 +35,7 @@ export const dislikeComment = async (req, res) => {
     const comment = await Comment.findById(commentId);
     if (!comment.dislikes.includes(userId)) {
       comment.dislikes.push(userId);
-      comment.likes = comment.likes.filter(id => id !== userId);
+      comment.likes = comment.likes.filter((id) => id !== userId);
       await comment.save();
     }
     res.json({ message: "Comment disliked" });

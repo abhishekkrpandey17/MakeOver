@@ -10,6 +10,10 @@ import blogRoutes from "./routes/blogRoutes.js";
 import commentRoutes from "./routes/commentRoutes.js";
 import replyRoutes from "./routes/replyRoutes.js";
 import authorRoutes from "./routes/authorRoutes.js";
+import questionRoutes from "./routes/questionRoutes.js";
+import answerRoutes from "./routes/answerRoutes.js";
+import replyRoutes1 from "./routes/replyRoutes1.js";
+import commentRoutes1 from "./routes/commentRoutes1.js";
 // import swaggerUi from "swagger-ui-express";
 // import { swaggerSpec } from "./swagger.js";
 
@@ -23,7 +27,7 @@ const corsOptions = {
   origin:
     process.env.NODE_ENV === "production"
       ? "https://blogs.make-over.in"
-      : "http://localhost:3000",
+      : "http://localhost:5175",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
 };
@@ -43,6 +47,10 @@ app.use("/api/v1/blogs", blogRoutes);
 app.use("/api/v1/comments", commentRoutes);
 app.use("/api/v1/replies", replyRoutes);
 app.use("/api/v1/authors", authorRoutes);
+app.use("/api/v1/questions", questionRoutes);
+app.use("/api/v1/answers", answerRoutes);
+app.use("/api/v1/replycommunity", replyRoutes1);
+app.use("/api/v1/commentcommunity", commentRoutes1);
 
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { Author } from "../models/Author.js";
 
-const JWT_SECRET = process.env.JWT_SECRET || "secret123";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const verifyAuthor = async (req, res) => {
   try {
@@ -14,6 +14,7 @@ export const verifyAuthor = async (req, res) => {
     const decoded = jwt.verify(token, JWT_SECRET);
 
     const author = await Author.findById(decoded.id).select("-__v");
+
     if (!author) {
       return res
         .status(404)

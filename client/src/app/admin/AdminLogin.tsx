@@ -2,34 +2,56 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
-const AuthorLogin = () => {
-  const [form, setForm] = useState({ uid: "", email: "" });
+const AdminLogin = () => {
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Logging in with UID: ${form.uid}, Email: ${form.email}`);
+    setLoading(true);
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_APP_API_TEST_URL}api/v1/admin/login`,
+        { email: form.email, password: form.password },
+        { withCredentials: true }
+      );
+
+      alert(res.data.message || "Login successful");
+      router.push("/admincms");
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        alert(err.response?.data?.message || "Login failed");
+      } else {
+        alert("An unexpected error occurred");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <section className="pb-24 pt-14 md:pt-36 flex flex-col md:flex-row items-center justify-center bg-[#f6e8fb] px-4 py-12">
-      {/* Left: Visual + Tagline (Hidden on Mobile) */}
-      <div className="hidden md:flex md:w-[43%] bg-[#4c0f5a] text-white rounded-2xl md:rounded-r-none flex-col justify-center items-center p-10">
+    <section className="pb-36 pt-14 md:pt-40 flex flex-col md:flex-row items-center justify-center bg-[#f6e8fb] px-4 py-12">
+      {/* Left: Visual */}
+      <div className="hidden md:flex md:w-[43%] bg-[#4c0f5a] text-white rounded-2xl md:rounded-r-none flex-col justify-center items-center p-13">
         <Image
           src="/images/admin.png"
-          alt="Author Illustration"
+          alt="Admin Illustration"
           height={210}
           width={210}
         />
         <div className="text-center mt-6">
           <h2 className="text-3xl font-bold font-serif mb-2">Admin Portal</h2>
-          <p className="text-purple-200 text-sm max-w-xs text-center leading-6">
-            Manage users, authors, reports, and system-wide settings securely
-            from the MakeOver Admin Control Panel 🛠️
+          <p className="text-purple-200 text-sm max-w-xs leading-6">
+            Manage users, authors, reports, and settings from the MakeOver Admin
+            Panel 🛠️
           </p>
         </div>
       </div>
@@ -63,9 +85,9 @@ const AuthorLogin = () => {
           <div>
             <label className="block mb-1 text-sm">Password</label>
             <input
-              type="text"
+              type="password"
               name="password"
-              value={form.uid}
+              value={form.password}
               onChange={handleChange}
               required
               placeholder="Enter your password..."
@@ -75,8 +97,9 @@ const AuthorLogin = () => {
           <button
             type="submit"
             className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded-full transition duration-300"
+            disabled={loading}
           >
-            Log In
+            {loading ? "Logging in..." : "Log In"}
           </button>
         </form>
         <p className="mt-6 text-center text-sm text-purple-500">
@@ -87,4 +110,4 @@ const AuthorLogin = () => {
   );
 };
 
-export default AuthorLogin;
+export default AdminLogin;

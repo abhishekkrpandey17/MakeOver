@@ -7,6 +7,7 @@ const authorSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     experience: String,
     bio: String,
+    interest: String,
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }],
   },
