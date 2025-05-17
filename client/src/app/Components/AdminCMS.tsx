@@ -197,7 +197,7 @@ export default function AdminCMS() {
             {blogList.map((blog, idx) => (
               <div
                 key={idx}
-                className="relative bg-white rounded-xl shadow overflow-hidden hover:shadow-lg hover:-translate-y-1 transition duration-300"
+                className="relative bg-white pb-8  rounded-xl shadow overflow-hidden hover:shadow-lg hover:-translate-y-1 transition duration-300"
               >
                 <button
                   onClick={() => handleDeleteBlog(idx)}
@@ -215,6 +215,22 @@ export default function AdminCMS() {
                     {blog.title}
                   </h3>
                   <p className="text-sm text-gray-600">{blog.content}</p>
+                </div>
+                {/* Action Buttons */}
+                {/* Buttons */}
+                <div className="flex justify-between gap-1">
+                  <button
+                    onClick={() => alert("Approved")}
+                    className="flex-1 bg-[#d6f7e1] ml-1 text-[#1b7232] text-xs font-semibold px-3 py-2 rounded-full hover:bg-[#b7f0cd] transition"
+                  >
+                    ✅ Approve
+                  </button>
+                  <button
+                    onClick={() => alert("Rejected")}
+                    className="flex-1 bg-[#ffe5e5] mr-2 text-[#b91c1c] text-xs font-semibold px-3 py-2 rounded-full hover:bg-[#ffc6c6] transition"
+                  >
+                    ❌ Reject
+                  </button>
                 </div>
               </div>
             ))}

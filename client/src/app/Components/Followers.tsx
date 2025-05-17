@@ -61,8 +61,8 @@ const Followers = () => {
             />
             <div>
               <h4 className="font-bold text-[#4b1a54]">{follower.name}</h4>
-              <p className="text-sm text-gray-600">{follower.email}</p>
-              <p className="text-sm text-gray-500">{follower.phone}</p>
+              {/* <p className="text-sm text-gray-600">{follower.email}</p>
+              <p className="text-sm text-gray-500">{follower.phone}</p> */}
             </div>
           </div>
         ))
