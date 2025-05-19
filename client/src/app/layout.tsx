@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ChatBotWidget from "./Components/ChatbotWidget";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import "./globals.css";
@@ -32,7 +33,9 @@ export default function RootLayout({
           clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
         >
           {children}
+         
         </GoogleOAuthProvider>
+        <ChatBotWidget/>
       </body>
     </html>
   );
