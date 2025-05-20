@@ -14,7 +14,7 @@ const mockStores = [
     location: "Kolkata, West Bengal",
     rating: 4.8,
     category: "Parlour",
-    image: "/images/store1.jpg",
+    image: "/imgcos1.avif",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const mockStores = [
     location: "Mumbai, Maharashtra",
     rating: 4.6,
     category: "Salon",
-    image: "/images/store2.jpg",
+    image: "/imgcos2.avif",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const mockStores = [
     location: "Delhi, India",
     rating: 4.9,
     category: "Spa",
-    image: "/images/store3.jpg",
+    image: "/imgcos3.jpeg",
   },
 ];
 
