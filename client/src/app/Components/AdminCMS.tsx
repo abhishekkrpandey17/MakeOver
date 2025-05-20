@@ -2,6 +2,7 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
+import VerifyBusiness from "./VerifyBusiness";
 
 const authors = [
   {
@@ -14,13 +15,13 @@ const authors = [
     name: "Priya Sharma",
     email: "priya@example.com",
     role: "Beauty Blogger",
-    avatar: "https://randomuser.me/api/portraits/women/33.jpg",
+    avatar: "",
   },
   {
     name: "Meera Kapoor",
     email: "meera@example.com",
     role: "Hair Stylist",
-    avatar: "https://randomuser.me/api/portraits/women/21.jpg",
+    avatar: "",
   },
 ];
 
@@ -80,7 +81,7 @@ export default function AdminCMS() {
         bio: "",
         interest: "",
       });
-    } catch (err: unknown) {
+    } catch (err) {
       if (axios.isAxiosError(err) && err.response) {
         alert(err.response.data?.message || "Failed to register author");
       } else {
@@ -93,7 +94,7 @@ export default function AdminCMS() {
     <div className="pt-20 pb-32 bg-[#e8d5f5] p-6">
       {/* Tab Switcher */}
       <div className="flex gap-4 justify-center mb-8 flex-wrap">
-        {["dashboard", "author", "blogs", "role", "add-author"].map(
+        {["dashboard", "author", "blogs", "role", "add-author", "Business"].map(
           (key: string) => (
             <button
               key={key}
@@ -332,6 +333,8 @@ export default function AdminCMS() {
           </form>
         </div>
       )}
+
+      {tab === "Business" && <VerifyBusiness />}
     </div>
   );
 }
