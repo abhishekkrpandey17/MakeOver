@@ -18,6 +18,7 @@ import Footer from "@/app/Components/Footer";
 export default function Page() {
   const { id } = useParams();
   const router = useRouter();
+
   interface Staff {
     name: string;
     title: string;
@@ -52,6 +53,23 @@ export default function Page() {
       },
     ],
   };
+
+  const recentComplaints = [
+    {
+      user: "Riya Sharma",
+      date: "May 20, 2025",
+      type: "Service Delay",
+      status: "Resolved",
+      message: "Appointment delayed by 45 mins. Staff later apologized.",
+    },
+    {
+      user: "Tarun Mehra",
+      date: "May 18, 2025",
+      type: "Overcharging",
+      status: "Pending",
+      message: "Was billed more than shown on website.",
+    },
+  ];
 
   return (
     <>
@@ -155,6 +173,45 @@ export default function Page() {
                       {s.name}
                     </h3>
                     <p className="text-sm text-gray-500">{s.title}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Complaints */}
+            <div>
+              <h2 className="text-xl font-semibold text-purple-700 mb-4">
+                🛠 Recent Complaints
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {recentComplaints.map((c, i) => (
+                  <div
+                    key={i}
+                    className="bg-white p-5 rounded-xl shadow-sm border-l-4 border-purple-300"
+                  >
+                    <div className="flex justify-between items-center mb-1">
+                      <h3 className="text-md font-bold text-purple-700">
+                        {c.user}
+                      </h3>
+                      <span className="text-sm text-gray-400">{c.date}</span>
+                    </div>
+                    <p className="text-sm text-gray-600 mb-1">
+                      <strong>Type:</strong> {c.type}
+                    </p>
+                    <p className="text-sm text-gray-700 mb-2 line-clamp-2">
+                      <strong>Message:</strong> {c.message}
+                    </p>
+                    <span
+                      className={`text-xs font-semibold px-3 py-1 rounded-full shadow-sm ${
+                        c.status === "Resolved"
+                          ? "bg-green-100 text-green-700"
+                          : c.status === "Pending"
+                          ? "bg-yellow-100 text-yellow-800"
+                          : "bg-gray-200 text-gray-600"
+                      }`}
+                    >
+                      {c.status}
+                    </span>
                   </div>
                 ))}
               </div>

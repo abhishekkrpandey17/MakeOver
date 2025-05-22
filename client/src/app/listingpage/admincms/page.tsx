@@ -19,6 +19,10 @@ import {
 } from "chart.js";
 import Header from "@/app/Components/Header";
 import Footer from "@/app/Components/Footer";
+import ComplaintsPage from "../components/ComplaintsPage";
+import { FiMapPin, FiAlertTriangle, FiEye, FiTrash2 } from "react-icons/fi";
+import BusinessVerificationList from "../components/BusinessVerifcationList";
+import AdminSentimentDashboard from "../components/UserSentiment";
 
 ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale);
 
@@ -29,6 +33,17 @@ const tabs = [
   { id: "toporders", label: "Top Orders Stores", icon: <FaStore /> },
   { id: "lowrating", label: "Low Rating Stores", icon: <FaSadTear /> },
   { id: "complaints", label: "Complaints", icon: <FaExclamationTriangle /> },
+  { id: "Flagged", label: "Flagged", icon: <FaExclamationTriangle /> },
+  {
+    id: "Business Verification",
+    label: "Business Verification",
+    icon: <FaExclamationTriangle />,
+  },
+  {
+    id: "User Sentiment",
+    label: "User Sentiment",
+    icon: <FaStore />,
+  },
 ];
 
 const tabHeadings: { [key: string]: { title: string; subtitle: string } } = {
@@ -61,6 +76,19 @@ const tabHeadings: { [key: string]: { title: string; subtitle: string } } = {
     title: "📩 User Complaints",
     subtitle:
       "Review issues raised by users to ensure service quality and maintain community trust.",
+  },
+  Flagged: {
+    title: "Flagged Business",
+    subtitle: "The Flagged businesses",
+  },
+  "Business Verification": {
+    title: "Business Verification",
+    subtitle: "Business Verification",
+  },
+
+  "User Sentiment": {
+    title: "User Sentiment",
+    subtitle: "User Sentiment",
   },
 };
 
@@ -271,48 +299,58 @@ export default function AdminCMSPage() {
         );
 
       case "complaints":
+        return <ComplaintsPage />;
+
+      case "Flagged":
         return (
-          <ul className="space-y-3">
-            {[
-              {
-                user: "Riya Sharma",
-                issue: "Staff arrived 20 minutes late",
-                date: "May 18",
-              },
-              {
-                user: "Neha Tiwari",
-                issue: "Overcharged for bridal package",
-                date: "May 20",
-              },
-              {
-                user: "Divya Khanna",
-                issue: "Improper hygiene during facial",
-                date: "May 21",
-              },
-              {
-                user: "Pallavi Sharma",
-                issue: "Appointment got canceled last minute",
-                date: "May 17",
-              },
-              {
-                user: "Sneha Paul",
-                issue: "Unresponsive customer service",
-                date: "May 15",
-              },
-            ].map((item, i) => (
-              <li
-                key={i}
-                className="bg-red-100 p-4 rounded-xl shadow border-l-4 border-red-500"
+          <div className="bg-white border-l-4 border-red-400 shadow-md rounded-xl p-5 space-y-2 hover:shadow-lg transition max-w-xl mx-auto">
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="text-lg font-bold text-red-600">
+                  Glamour Salon
+                </h3>
+                <p className="text-sm text-gray-500 flex items-center gap-1">
+                  <FiMapPin className="text-gray-400" /> Sector 21, Chandigarh
+                </p>
+              </div>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-yellow-100 text-yellow-800">
+                Pending
+              </span>
+            </div>
+
+            <p className="text-sm text-gray-700">
+              <span className="font-semibold">Reason:</span> Multiple fake
+              reviews reported
+            </p>
+
+            <div className="flex gap-3 mt-3">
+              <button
+                onClick={() => alert("View details")}
+                className="flex items-center gap-1 text-sm px-4 py-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200 transition"
               >
-                <h4 className="text-sm font-semibold text-red-700">
-                  {item.user}
-                </h4>
-                <p className="text-sm text-gray-700">❗ {item.issue}</p>
-                <p className="text-xs text-gray-500">📅 {item.date}</p>
-              </li>
-            ))}
-          </ul>
+                <FiEye /> View
+              </button>
+              <button
+                onClick={() => alert("Warn business")}
+                className="flex items-center gap-1 text-sm px-4 py-2 rounded-full bg-yellow-100 text-yellow-700 hover:bg-yellow-200 transition"
+              >
+                <FiAlertTriangle /> Warn
+              </button>
+              <button
+                onClick={() => alert("Remove business")}
+                className="flex items-center gap-1 text-sm px-4 py-2 rounded-full bg-red-100 text-red-700 hover:bg-red-200 transition"
+              >
+                <FiTrash2 /> Remove
+              </button>
+            </div>
+          </div>
         );
+
+      case "Business Verification":
+        return <BusinessVerificationList />;
+
+      case "User Sentiment":
+        return <AdminSentimentDashboard />;
 
       // (All other cases: toprated, toporders, lowrating, complaints)
       // Can stay as you already wrote them. Only the header section is affected.

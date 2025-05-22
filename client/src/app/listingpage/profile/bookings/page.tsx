@@ -9,7 +9,12 @@ import {
   CalendarDaysIcon,
   GiftIcon,
   XCircleIcon,
+  IdentificationIcon,
 } from "@heroicons/react/24/outline";
+import { Angry } from "lucide-react";
+import ComplaintsUser from "../../components/ComplaintsUser";
+import MyBusinessStatus from "../../components/MyBusinessStatus";
+import UserSuggestionPage from "../../components/UserSuggestionsPage";
 
 const favourites = [
   { name: "Glamour Glow Studio", location: "Kolkata", rating: 4.8 },
@@ -61,6 +66,9 @@ export default function BookingsPage() {
     { id: "upcoming", name: "Upcoming Bookings", icon: CalendarDaysIcon },
     { id: "offers", name: "My Offers", icon: GiftIcon },
     { id: "cancelled", name: "Cancelled", icon: XCircleIcon },
+    { id: "complaints", name: "complaints", icon: Angry },
+    { id: "suggestions", name: "sugestions", icon: IdentificationIcon },
+    { id: "status", name: "status", icon: XCircleIcon },
   ];
 
   const renderContent = () => {
@@ -163,6 +171,18 @@ export default function BookingsPage() {
             ))}
           </div>
         );
+
+      case "complaints": {
+        return <ComplaintsUser />;
+      }
+
+      case "status": {
+        return <MyBusinessStatus />;
+      }
+
+      case "suggestions": {
+        return <UserSuggestionPage />;
+      }
       default:
         return null;
     }
