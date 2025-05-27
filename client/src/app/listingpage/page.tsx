@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import Link from "next/link";
 
 const mockStores = [
   {
@@ -212,7 +213,7 @@ export default function Page() {
                     ⭐ {store.rating} • {store.category}
                   </p>
                   <button className="mt-4 px-5 py-2 rounded-full bg-purple-600 text-white hover:bg-purple-700 transition text-sm w-fit">
-                    View Store
+                    <Link href="/store">View Store</Link>
                   </button>
                 </div>
               </div>

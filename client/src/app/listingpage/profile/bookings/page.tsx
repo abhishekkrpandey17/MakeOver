@@ -61,7 +61,7 @@ export default function BookingsPage() {
   const [activeTab, setActiveTab] = useState("upcoming");
 
   const tabs = [
-    { id: "favourites", name: "Favourite Salons", icon: HeartIcon },
+    { id: "favourites", name: "Favourite", icon: HeartIcon },
     { id: "previous", name: "Previous Bookings", icon: ClockIcon },
     { id: "upcoming", name: "Upcoming Bookings", icon: CalendarDaysIcon },
     { id: "offers", name: "My Offers", icon: GiftIcon },

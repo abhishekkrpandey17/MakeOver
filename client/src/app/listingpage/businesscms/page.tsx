@@ -3,15 +3,6 @@
 import { useState } from "react";
 import Header from "@/app/Components/Header";
 import Footer from "@/app/Components/Footer";
-import {
-  FaChartLine,
-  FaCrown,
-  FaRupeeSign,
-  FaCalendarAlt,
-  FaUserCheck,
-  FaUserTimes,
-  FaStar,
-} from "react-icons/fa";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -47,7 +38,7 @@ const salesData = {
 };
 
 export default function BusinessCMSPage() {
-  const [activeTab, setActiveTab] = useState("sales");
+  const [activeTab, setActiveTab] = useState("upcoming");
 
   const renderSection = () => {
     switch (activeTab) {
@@ -55,36 +46,25 @@ export default function BusinessCMSPage() {
         return (
           <div className="space-y-6">
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-pink-100 p-5 rounded-2xl shadow flex items-center gap-4">
-                <FaRupeeSign className="text-2xl text-purple-700" />
-                <div>
-                  <h3 className="text-lg font-bold text-purple-800">
-                    Monthly Revenue
-                  </h3>
-                  <p className="text-sm text-gray-700">₹85,000 this month</p>
-                </div>
+              <div className="bg-pink-100 p-5 rounded-2xl shadow">
+                <h3 className="text-lg font-bold text-purple-800">
+                  Monthly Revenue
+                </h3>
+                <p className="text-sm text-gray-700">₹85,000 this month</p>
               </div>
-              <div className="bg-pink-100 p-5 rounded-2xl shadow flex items-center gap-4">
-                <FaCrown className="text-2xl text-fuchsia-700" />
-                <div>
-                  <h3 className="text-lg font-bold text-fuchsia-800">
-                    Top Service
-                  </h3>
-                  <p className="text-sm text-gray-700">
-                    Facial Glow Package ✨
-                  </p>
-                </div>
+              <div className="bg-pink-100 p-5 rounded-2xl shadow">
+                <h3 className="text-lg font-bold text-fuchsia-800">
+                  Top Service
+                </h3>
+                <p className="text-sm text-gray-700">Facial Glow Package ✨</p>
               </div>
-              <div className="bg-pink-100 p-5 rounded-2xl shadow flex items-center gap-4 col-span-2">
-                <FaChartLine className="text-2xl text-fuchsia-600" />
-                <div>
-                  <h3 className="text-lg font-bold text-fuchsia-800">
-                    Total Bookings
-                  </h3>
-                  <p className="text-sm text-gray-700">
-                    📆 327 bookings this month
-                  </p>
-                </div>
+              <div className="bg-pink-100 p-5 rounded-2xl shadow col-span-2">
+                <h3 className="text-lg font-bold text-fuchsia-800">
+                  Total Bookings
+                </h3>
+                <p className="text-sm text-gray-700">
+                  📆 327 bookings this month
+                </p>
               </div>
             </div>
             <div className="bg-white p-5 rounded-2xl shadow">
@@ -124,7 +104,6 @@ export default function BusinessCMSPage() {
           <div className="grid gap-4">
             {["Riya Sharma", "Sneha Patil", "Komal Sinha"].map((name, idx) => (
               <div key={idx} className="bg-green-100 p-4 rounded-xl shadow">
-                <FaUserCheck className="text-green-600 mb-1" />
                 <h4 className="font-semibold">{name}</h4>
                 <p className="text-sm">
                   Service: {["Hair Cut", "Pedicure", "Hair Color"][idx]} |
@@ -147,7 +126,6 @@ export default function BusinessCMSPage() {
               { name: "Pooja Sinha", time: "6:00 PM", staff: "Aarti" },
             ].map((item, i) => (
               <div key={i} className="bg-yellow-100 p-4 rounded-xl shadow">
-                <FaCalendarAlt className="text-yellow-600 mb-1" />
                 <h4 className="font-semibold">{item.name}</h4>
                 <p className="text-sm">
                   ⏰ {item.time} | Staff: {item.staff}
@@ -164,7 +142,6 @@ export default function BusinessCMSPage() {
         return (
           <div className="space-y-4">
             <div className="bg-red-100 p-4 rounded-xl shadow">
-              <FaUserTimes className="text-red-600 mb-1" />
               <h4 className="font-semibold">Shalini Verma</h4>
               <p className="text-sm text-gray-700">
                 Cancelled due to personal emergency
@@ -172,7 +149,6 @@ export default function BusinessCMSPage() {
               <p className="text-xs text-gray-600">Date: May 14</p>
             </div>
             <div className="bg-red-100 p-4 rounded-xl shadow">
-              <FaUserTimes className="text-red-600 mb-1" />
               <h4 className="font-semibold">Ritu Tiwari</h4>
               <p className="text-sm text-gray-700">
                 Cancelled: Appointment clash
@@ -191,7 +167,6 @@ export default function BusinessCMSPage() {
               { name: "Aarti Joshi", rating: 4.6, reviews: 18 },
             ].map((staff, index) => (
               <div key={index} className="bg-blue-100 p-4 rounded-xl shadow">
-                <FaStar className="text-blue-600 mb-2" />
                 <h4 className="font-semibold">{staff.name}</h4>
                 <p className="text-sm">Avg Rating: {staff.rating} ⭐</p>
                 <p className="text-xs text-gray-600">
@@ -259,10 +234,10 @@ export default function BusinessCMSPage() {
       <div className="bg-gradient-to-b from-pink-100 via-purple-50 to-white pt-20 pb-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-3xl md:text-4xl font-extrabold text-fuchsia-700 mb-3">
-            🎀 Business CMS Dashboard
+            Business CMS Dashboard
           </h1>
           <p className="text-purple-500 text-sm mb-6">
-            Manage your bookings, track performance, and build trust 🌸
+            Manage your bookings, track performance, and build trust
           </p>
 
           <div className="flex flex-wrap justify-center gap-3 mb-10">
